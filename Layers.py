@@ -26,7 +26,7 @@ class ChannelAttention(nn.Module):
         return self.sigmoid(out)
 
 
-class SpatialAttention(nn.Module):  # 空间注意力模块
+class SpatialAttention(nn.Module): 
     def __init__(self, kernel_size=7):
         super(SpatialAttention, self).__init__()
 
@@ -43,7 +43,7 @@ class SpatialAttention(nn.Module):  # 空间注意力模块
         return self.sigmoid(x)
 
 
-class TemporalSpatialBlock(nn.Module):  # 混合模块
+class TemporalSpatialBlock(nn.Module):
     def __init__(self, channel, ratio=8, kernel_size=7):
         super(TemporalSpatialBlock, self).__init__()
         self.channelattention = ChannelAttention(channel, ratio=ratio)
@@ -55,7 +55,7 @@ class TemporalSpatialBlock(nn.Module):  # 混合模块
         return x
 
 
-class MultiLevelSpectralBlock(nn.Module):  # 获取频率特征
+class MultiLevelSpectralBlock(nn.Module):
     def __init__(self, inc, params_path='./scaling_filter.mat'):
         super(MultiLevelSpectralBlock, self).__init__()
         self.filter_length = io.loadmat(params_path)['Lo_D'].shape[1]
@@ -124,7 +124,7 @@ class GcnBlock(nn.Module):
         return out
 
 
-class Classification(nn.Module):  # 分类模块
+class Classification(nn.Module):
     def __init__(self):
         super(Classification, self).__init__()
         self.flattetn = nn.Flatten(1, 2)
